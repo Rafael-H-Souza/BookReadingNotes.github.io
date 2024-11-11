@@ -1,0 +1,236 @@
+<html><head><base href="assets">
+    <meta charset="UTF-8">
+    <title>BookReadingNotes</title>
+    <style>
+    :root {
+      --primary: #2C3E50;
+      --secondary: #E74C3C;
+      --accent: #3498DB;
+      --light: #ECF0F1;
+      --dark: #2C3E50;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background-color: var(--light);
+    }
+    
+    nav {
+      background: var(--primary);
+      padding: 1rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .hero-section {
+      background: var(--primary);
+      color: white;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .login-container {
+      background: white;
+      max-width: 400px;
+      margin: -100px auto 2rem;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    
+    .btn {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+      font-size: 1rem;
+    }
+    
+    .btn:hover {
+      background: #c0392b;
+    }
+    
+    .social-login {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .social-btn {
+      flex: 1;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .social-btn:hover {
+      background: #f5f5f5;
+    }
+    
+    .challenges-preview {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    
+    .challenges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    </style>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    </head>
+    <body>
+    
+    <nav>
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6.5 2H20V22H6.5C5.83696 22 5.20107 21.7366 4.73223 21.2678C4.26339 20.7989 4 20.163 4 19.5V4.5C4 3.83696 4.26339 3.20107 4.73223 2.73223C5.20107 2.26339 5.83696 2 6.5 2V2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        BookQuest
+      </div>
+    </nav>
+    
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>Bem-vindo ao BookQuest</h1>
+        <p>Participe de desafios de leitura e conecte-se com outros leitores</p>
+      </div>
+    </section>
+    
+    <div class="login-container">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <input type="password" id="password" required>
+        </div>
+        <button type="submit" class="btn">Entrar</button>
+      </form>
+      <div class="social-login">
+        <button class="social-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#4285F4">
+            <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm6.804 16.864H12v-4.032h6.804v4.032zM12 7.168h6.804v4.032H12V7.168z"/>
+          </svg>
+          Google
+        </button>
+        <button class="social-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          Facebook
+        </button>
+      </div>
+    </div>
+    
+    <div class="challenges-preview">
+      <h2>Desafios em Destaque</h2>
+      <div class="challenges-grid">
+        <div class="challenge-card">
+          <h3>Maratona Literária 2024</h3>
+          <p>Leia 24 livros em 2024</p>
+          <div class="progress-bar">
+            <div class="progress" style="width: 25%"></div>
+          </div>
+          <p>6/24 livros lidos</p>
+          <button class="btn">Participar</button>
+        </div>
+        
+        <div class="challenge-card">
+          <h3>Volta ao Mundo em Livros</h3>
+          <p>Leia um livro de cada continente</p>
+          <div class="progress-bar">
+            <div class="progress" style="width: 40%"></div>
+          </div>
+          <p>2/5 continentes</p>
+          <button class="btn">Participar</button>
+        </div>
+        
+        <div class="challenge-card">
+          <h3>Clássicos da Literatura</h3>
+          <p>12 clássicos em 12 meses</p>
+          <div class="progress-bar">
+            <div class="progress" style="width: 60%"></div>
+          </div>
+          <p>7/12 clássicos</p>
+          <button class="btn">Participar</button>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // Simulação de login
+      if(email && password) {
+        window.location.href = 'https://bookquest.com/desafios';
+      }
+    });
+    
+    document.querySelectorAll('.social-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        alert('Login social em desenvolvimento');
+      });
+    });
+    </script>
+    
+    </body></html>
