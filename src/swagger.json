@@ -1,0 +1,149 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "User API",
+      "description": "API para registro, login e listagem de usuários",
+      "version": "1.0.0"
+    },
+      "components":{
+        "securitySchemes":{
+          "BearerAuth":{
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+          }
+        }
+      
+    },
+    "paths": {
+      "/api/user/register": {
+        "post": {
+          "tags": ["Users"],
+          "summary": "Registrar um novo usuário",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["username", "password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Usuário registrado com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "username": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Erro ao registrar o usuário"
+            }
+          }
+        }
+      },
+      "/api/user/login": {
+        "post": {
+          "tags": ["Users"],
+          "summary": "Login de usuário",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["username", "password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Login realizado com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "token": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Erro ao realizar login"
+            }
+          }
+        }
+      },
+      "/api/user/users": {
+        "get": {
+          "tags": ["Users"],
+          "summary": "Obter a lista de usuários",
+          "security":[{"BearerAuth":[]}],
+          "responses": {
+            "200": {
+              "description": "Lista de usuários",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "username": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Erro ao obter a lista de usuários"
+            }
+          }
+        }
+      }
+    }
+  }
+  
