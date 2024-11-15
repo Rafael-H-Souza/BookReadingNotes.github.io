@@ -2,17 +2,22 @@ const Book = require('../models/book');
 
 class BookRepository {
     async createUser(book) {
-        console.log("testeCrieate")
-        return await Book.create(book);
+       return await Book.create(book);
     }
 
-    async findByBookName(name) {
-        return await Book.findOne({ where: { name } });
+    async updateUser(book) {
+        await Book.update({ name: book.name, category: book.category, author: book.author},{ where: { id: book.id } })        
     }
 
-    async deleteByBookId(id) {
-        console.log("tentei")
-        return await Book.destroy({ where: {id} });
+    async findByBookId(book) {
+        await Book.findOne({ where: { id: book.id } });
+    }
+    
+    async deleteByBookId(book) {
+        await Book.destroy({ where: { id: book.id } });
+    }
+    async findByBookId(book) {
+        return await Book.findOne({ where: { id: book.id } });
     }
 
     async findAll() {
