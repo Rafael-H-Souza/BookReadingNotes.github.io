@@ -15,7 +15,7 @@
         }      
     },
     "paths": {
-        "/api/book/register": {
+      "/api/book/register": {
         "post": {
           "tags": ["Books"],
           "summary": "Registrar um novo Livro",
@@ -72,6 +72,7 @@
           }
         }
       },
+
       "/api/book/delete/{id}": {
         "delete": {
           "tags": ["Books"],
@@ -137,6 +138,129 @@
         }
       } ,      
       
+      "/api/movie/register": {
+        "post": {
+          "tags": ["Movies"],
+          "summary": "Registrar um novo Filme",
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "gender": {
+                        "type": "string"
+                      },
+                      "director":{
+                        "type": "string"
+                      }
+                    },
+                    "required": ["name", "gender", "director"]
+                  }
+                }
+              }
+            },
+          "responses": {
+            "200": {
+              "description": "Filme registrado com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "gender": {
+                        "type": "string"
+                      },
+                      "director":{
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Erro ao registrar o Filme"
+            }
+          }
+        }
+      },
+
+      "/api/movie/delete/{id}": {
+        "delete": {
+          "tags": ["Movies"],
+          "summary": "Deletar Filme",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Filme deletado com sucesso"
+            },
+            "400": {
+              "description": "Erro ao deletar o filme"
+            }
+          }
+        }
+      },
+
+      "/api/movie/movie": {
+        "get": {
+          "tags": ["Movies"],
+          "summary": "Obter a lista de Filmes",          
+          "responses": {
+            "200": {
+              "description": "Lista de Filmes",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "gender": {
+                          "type": "string"
+                        },
+                        "director":{
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Erro ao obter a lista de filmes"
+            }
+          }
+        }
+      } ,  
+
       "/api/user/register": {
         "post": {
           "tags": ["Users"],
@@ -187,7 +311,6 @@
         }
       },
 
-
       "/api/user/login": {
         "post": {
           "tags": ["Users"],
@@ -234,7 +357,6 @@
         }
       },
       
-
       "/api/user/user": {
         "get": {
           "tags": ["Users"],
