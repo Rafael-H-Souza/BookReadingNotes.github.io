@@ -3,11 +3,13 @@ const express = require('express')
 const swaggerUI = require('swagger-ui-express')
 const port = 3000
 const userController = require('./controllers/userController')
+const bookController = require('./controllers/bookController')
 
 
 const app = express()
 app.use(express.json())
 app.use('/api/user', userController);
+app.use('/api/book', bookController);
 app.use('/api-docs', swaggerUI.serve,swaggerUI.setup(require('./swagger.json')));
 
 

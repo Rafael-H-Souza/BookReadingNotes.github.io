@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-      "title": "User API",
+      "title": "User Book Reading Notes",
       "description": "API para registro, login e listagem de usuários",
       "version": "1.0.0"
     },
@@ -12,10 +12,131 @@
             "scheme": "bearer",
             "bearerFormat": "JWT"
           }
-        }
-      
+        }      
     },
     "paths": {
+        "/api/book/register": {
+        "post": {
+          "tags": ["Books"],
+          "summary": "Registrar um novo Livro",
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "category": {
+                        "type": "string"
+                      },
+                      "author":{
+                        "type": "string"
+                      }
+                    },
+                    "required": ["name", "category", "author"]
+                  }
+                }
+              }
+            },
+          "responses": {
+            "200": {
+              "description": "Livro registrado com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "category": {
+                        "type": "string"
+                      },
+                      "author":{
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Erro ao registrar o Livro"
+            }
+          }
+        }
+      },
+      "/api/book/delete/{id}": {
+        "delete": {
+          "tags": ["Books"],
+          "summary": "Deletar livro",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Livro deletado com sucesso"
+            },
+            "400": {
+              "description": "Erro ao deletar o livro"
+            }
+          }
+        }
+      },
+      
+      "/api/book/book": {
+        "get": {
+          "tags": ["Books"],
+          "summary": "Obter a lista de Livros",          
+          "responses": {
+            "200": {
+              "description": "Lista de livros",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "category": {
+                          "type": "string"
+                        },
+                        "author":{
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Erro ao obter a lista de livros"
+            }
+          }
+        }
+      } ,      
+      
       "/api/user/register": {
         "post": {
           "tags": ["Users"],
@@ -65,6 +186,8 @@
           }
         }
       },
+
+
       "/api/user/login": {
         "post": {
           "tags": ["Users"],
@@ -110,11 +233,17 @@
           }
         }
       },
-      "/api/user/users": {
+      
+
+      "/api/user/user": {
         "get": {
           "tags": ["Users"],
           "summary": "Obter a lista de usuários",
-          "security":[{"BearerAuth":[]}],
+          "security":[
+            {
+              "BearerAuth":[]
+            }
+          ],
           "responses": {
             "200": {
               "description": "Lista de usuários",
@@ -143,7 +272,7 @@
             }
           }
         }
-      }
+      }   
     }
   }
   

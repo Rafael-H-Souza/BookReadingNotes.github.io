@@ -1,5 +1,6 @@
 const User = require('../models/user');
 
+// name, category, author 
 class UserRepository {
     async createUser(user) {
         return await User.create(user);
