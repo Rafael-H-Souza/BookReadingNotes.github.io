@@ -12,6 +12,21 @@ class UserService {
     async getUsers(){
         return  userRepository.findAll()
     }
+    async getUser(usename){
+        const user = await userRepository.findByUserName(usename)
+
+        if(!username){
+            throw new Error('User not fond')
+        }
+
+        if(!isValidePassword){
+            throw new Error('User or password not is valid ')
+        }
+
+        const token = jwt.sign({id:user.id},"51_Pinga", {expiresIn: '1h'})
+        return token;
+
+    }
 
     async login (username, password){
         const user = await userRepository.findByUserName(username)
