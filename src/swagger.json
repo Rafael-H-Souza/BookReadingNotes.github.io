@@ -1,54 +1,4 @@
 {
-<<<<<<< HEAD
-    "openapi": "3.0.0",
-    "info": {
-      "title": "User Book Reading Notes",
-      "description": "API para registro, login e listagem de usuários",
-      "version": "1.0.0"
-    },
-      "components":{
-        "securitySchemes":{
-          "BearerAuth":{
-            "type": "http",
-            "scheme": "bearer",
-            "bearerFormat": "JWT"
-          }
-        }      
-    },
-    "paths": {
-      "/api/book/register": {
-        "post": {
-          "tags": ["Books"],
-          "summary": "Registrar um novo Livro",
-            "requestBody": {
-              "required": true,
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "category": {
-                        "type": "string"
-                      },
-                      "author":{
-                        "type": "string"
-                      }
-                    },
-                    "required": ["name", "category", "author"]
-                  }
-                }
-              }
-            },
-          "responses": {
-            "200": {
-              "description": "Livro registrado com sucesso",
-              "content": {
-                "application/json": {
-                  "schema": {
-=======
   "openapi": "3.0.0",
   "info": {
     "title": "User Book Reading Notes",
@@ -248,11 +198,11 @@
                 "schema": {
                   "type": "array",
                   "items": {
->>>>>>> 857e8b5 (Book finalizado)
                     "type": "object",
                     "properties": {
                       "id": {
-                        "type": "integer"
+                        "type": "string",
+                        "format": "uuid"
                       },
                       "name": {
                         "type": "string"
@@ -267,206 +217,25 @@
                   }
                 }
               }
-            },
-            "400": {
-              "description": "Erro ao registrar o Livro"
             }
+          },
+          "400": {
+            "description": "Erro ao obter a lista de livros"
           }
         }
-      },
-
-      "/api/book/delete/{id}": {
-        "delete": {
-          "tags": ["Books"],
-          "summary": "Deletar livro",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "schema": {
-                "type": "integer"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Livro deletado com sucesso"
-            },
-            "400": {
-              "description": "Erro ao deletar o livro"
-            }
+      }
+    } , 
+    
+    
+    "/api/foot/register": {
+      "post": {
+        "tags": ["Foots"],
+        "summary": "Registrar um novo Livro",
+        "security":[
+          {
+            "BearerAuth":[]
           }
-        }
-      },
-      
-      "/api/book/book": {
-        "get": {
-          "tags": ["Books"],
-          "summary": "Obter a lista de Livros",          
-          "responses": {
-            "200": {
-              "description": "Lista de livros",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "format": "uuid"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "category": {
-                          "type": "string"
-                        },
-                        "author":{
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Erro ao obter a lista de livros"
-            }
-          }
-        }
-      } ,      
-      
-      "/api/movie/register": {
-        "post": {
-          "tags": ["Movies"],
-          "summary": "Registrar um novo Filme",
-            "requestBody": {
-              "required": true,
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "gender": {
-                        "type": "string"
-                      },
-                      "director":{
-                        "type": "string"
-                      }
-                    },
-                    "required": ["name", "gender", "director"]
-                  }
-                }
-              }
-            },
-          "responses": {
-            "200": {
-              "description": "Filme registrado com sucesso",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "integer"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "gender": {
-                        "type": "string"
-                      },
-                      "director":{
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Erro ao registrar o Filme"
-            }
-          }
-        }
-      },
-
-      "/api/movie/delete/{id}": {
-        "delete": {
-          "tags": ["Movies"],
-          "summary": "Deletar Filme",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "schema": {
-                "type": "integer"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Filme deletado com sucesso"
-            },
-            "400": {
-              "description": "Erro ao deletar o filme"
-            }
-          }
-        }
-      },
-
-      "/api/movie/movie": {
-        "get": {
-          "tags": ["Movies"],
-          "summary": "Obter a lista de Filmes",          
-          "responses": {
-            "200": {
-              "description": "Lista de Filmes",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "format": "uuid"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "gender": {
-                          "type": "string"
-                        },
-                        "director":{
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Erro ao obter a lista de filmes"
-            }
-          }
-        }
-      } ,  
-
-      "/api/user/register": {
-        "post": {
-          "tags": ["Users"],
-          "summary": "Registrar um novo usuário",
+        ],
           "requestBody": {
             "required": true,
             "content": {
@@ -474,26 +243,414 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "username": {
+                    "name": {
                       "type": "string"
                     },
-                    "password": {
+                    "category": {
+                      "type": "string"
+                    },
+                    "author":{
                       "type": "string"
                     }
                   },
-                  "required": ["username", "password"]
+                  "required": ["name", "category", "author"]
                 }
               }
             }
           },
-<<<<<<< HEAD
-          "responses": {
-            "200": {
-              "description": "Usuário registrado com sucesso",
-              "content": {
-                "application/json": {
-                  "schema": {
-=======
+        "responses": {
+          "200": {
+            "description": "Livro registrado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "ID único do livro"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "category": {
+                      "type": "string"
+                    },
+                    "author":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao registrar o Livro"
+          }
+        }
+      }
+    },
+
+    "/api/foot/delete/{id}": {
+      "delete": {
+        "tags": ["Foots"],
+        "summary": "Deletar livro",
+        "security":[
+          {
+            "BearerAuth":[]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Livro deletado com sucesso"
+          },
+          "400": {
+            "description": "Erro ao deletar o livro"
+          }
+        }
+      }
+    },
+    "/api/foot/update/{id}": {
+      "put": {
+        "tags": ["Foots"],
+        "summary": "Atualizar dados de um livro",
+        "security":[
+          {
+            "BearerAuth":[]
+          }
+        ], 
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "category": {
+                      "type": "string"
+                    },
+                    "author":{
+                      "type": "string"
+                    }
+                  },
+                  "required": ["name", "category", "author"]
+                }
+              }
+            }
+          },
+        "responses": {
+          "200": {
+            "description": "Livro atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "category": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao atualizar o livro"
+          }
+        }
+      }
+    },
+    
+    "/api/foot/list": {
+      "get": {
+        "tags": ["Foots"],
+        "summary": "Obter a lista de Livros",
+        "security":[
+          {
+            "BearerAuth":[]
+          }
+        ],         
+        "responses": {
+          "200": {
+            "description": "Lista de livros",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "category": {
+                        "type": "string"
+                      },
+                      "author":{
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao obter a lista de livros"
+          }
+        }
+      }
+    } ,
+
+    
+    "/api/movie/register": {
+      "post": {
+        "tags": ["Movies"],
+        "summary": "Registrar um novo Filme",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "gender": {
+                      "type": "string"
+                    },
+                    "director":{
+                      "type": "string"
+                    }
+                  },
+                  "required": ["name", "gender", "director"]
+                }
+              }
+            }
+          },
+        "responses": {
+          "200": {
+            "description": "Filme registrado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "gender": {
+                      "type": "string"
+                    },
+                    "director":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao registrar o Filme"
+          }
+        }
+      }
+    },
+
+    "/api/movie/delete/{id}": {
+      "delete": {
+        "tags": ["Movies"],
+        "summary": "Deletar Filme",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Filme deletado com sucesso"
+          },
+          "400": {
+            "description": "Erro ao deletar o filme"
+          }
+        }
+      }
+    },
+
+    "/api/movie/movie": {
+      "get": {
+        "tags": ["Movies"],
+        "summary": "Obter a lista de Filmes",          
+        "responses": {
+          "200": {
+            "description": "Lista de Filmes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "gender": {
+                        "type": "string"
+                      },
+                      "director":{
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao obter a lista de filmes"
+          }
+        }
+      }
+    } ,  
+
+    "/api/user/register": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Registrar um novo usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": ["username", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário registrado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "username": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao registrar o usuário"
+          }
+        }
+      }
+    },
+
+    "/api/user/login": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Login de usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": ["username", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login realizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "400": {
             "description": "Erro ao realizar login"
           }
@@ -574,7 +731,6 @@
                 "schema": {
                   "type": "array",
                   "items": {
->>>>>>> 857e8b5 (Book finalizado)
                     "type": "object",
                     "properties": {
                       "id": {
@@ -588,104 +744,14 @@
                   }
                 }
               }
-            },
-            "400": {
-              "description": "Erro ao registrar o usuário"
-            }
-          }
-        }
-<<<<<<< HEAD
-      },
-
-      "/api/user/login": {
-        "post": {
-          "tags": ["Users"],
-          "summary": "Login de usuário",
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "username": {
-                      "type": "string"
-                    },
-                    "password": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["username", "password"]
-                }
-              }
             }
           },
-          "responses": {
-            "200": {
-              "description": "Login realizado com sucesso",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "token": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Erro ao realizar login"
-            }
+          "400": {
+            "description": "Erro ao obter a lista de usuários"
           }
         }
-      },
-      
-      "/api/user/user": {
-        "get": {
-          "tags": ["Users"],
-          "summary": "Obter a lista de usuários",
-          "security":[
-            {
-              "BearerAuth":[]
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Lista de usuários",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "format": "uuid"
-                        },
-                        "username": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Erro ao obter a lista de usuários"
-            }
-          }
-        }
-      }   
-    }
-=======
       }
 
     }   
->>>>>>> 857e8b5 (Book finalizado)
   }
-  
+}

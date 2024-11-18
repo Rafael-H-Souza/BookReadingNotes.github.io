@@ -39,5 +39,12 @@ library
 
     models - They represent the database tables in the form of classes for using the values ​​in the tables; Represents the abstraction of the object and its values
 
+
     Config/ database - Config – These are environment configuration or connection of other applications or banks
+
     
+
+
+
+    Config/ database - Config – These are environment configuration or connection of other applications or banks
+

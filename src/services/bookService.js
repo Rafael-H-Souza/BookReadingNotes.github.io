@@ -1,20 +1,23 @@
 const bookRepository = require('../repositories/bookRepository')
 
 class BookService {
-    async register(name, category, author){
-        // name, category, author         
-        const book = await bookRepository.createUser({name, category, author})
-        return book;
+    async register(name, category, author){        
+        return await bookRepository.createUser({name, category, author})
     }
+    async updateBook(book){       
+        await bookRepository.updateUser(book)
+       
+    }    
     async getBooks(){
-        return  bookRepository.findAll()
+        return await bookRepository.findAll()
     }
-    async getBook(name){
-        return  bookRepository.findByBookName(name)
+    async getBook(id){
+        return await bookRepository.findByBookId({id})
     }
     async deleteBook(id) {
-        return bookRepository.deleteByBookId(id)        
+        await bookRepository.deleteByBookId({id})        
     }
+    
     
 }
 module.exports = new BookService();
