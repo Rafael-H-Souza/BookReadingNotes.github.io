@@ -1,10 +1,14 @@
 const express = require('express');
+
 const movieService = require('../services/movieService')
 
 const router = express.Router();
 
-router.post('/register', async (req, res)=>{
+router.post('/register',  async (req, res)=>{
+    
     try{
+        
+        console.log(`test 03`)
         const {name, gender, director } = req.body;
         const movie = await movieService.register( name, gender, director )
         res.json(movie);

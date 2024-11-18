@@ -19,6 +19,11 @@
       "post": {
         "tags": ["Books"],
         "summary": "Registrar um novo Livro",
+        "security":[
+          {
+            "BearerAuth":[]
+          }
+        ],
           "requestBody": {
             "required": true,
             "content": {
@@ -50,7 +55,8 @@
                   "type": "object",
                   "properties": {
                     "id": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "ID único do livro"
                     },
                     "name": {
                       "type": "string"
@@ -77,6 +83,11 @@
       "delete": {
         "tags": ["Books"],
         "summary": "Deletar livro",
+        "security":[
+          {
+            "BearerAuth":[]
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -97,11 +108,88 @@
         }
       }
     },
+    "/api/book/update/{id}": {
+      "put": {
+        "tags": ["Books"],
+        "summary": "Atualizar dados de um livro",
+        "security":[
+          {
+            "BearerAuth":[]
+          }
+        ], 
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "category": {
+                      "type": "string"
+                    },
+                    "author":{
+                      "type": "string"
+                    }
+                  },
+                  "required": ["name", "category", "author"]
+                }
+              }
+            }
+          },
+        "responses": {
+          "200": {
+            "description": "Livro atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "category": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao atualizar o livro"
+          }
+        }
+      }
+    },
     
-    "/api/book/book": {
+    "/api/book/list": {
       "get": {
         "tags": ["Books"],
-        "summary": "Obter a lista de Livros",          
+        "summary": "Obter a lista de Livros",
+        "security":[
+          {
+            "BearerAuth":[]
+          }
+        ],         
         "responses": {
           "200": {
             "description": "Lista de livros",
@@ -356,6 +444,62 @@
         }
       }
     },
+    "/api/user/updatePassword": {
+        "put": {
+          "tags": ["Users"],
+          "summary": "Atualizar senhado Usuário",
+          "security":[
+            {
+              "BearerAuth":[]
+            }
+          ],
+          "requestBody": {
+              "required": true,
+              "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "newPassword": {
+                      "type": "string"
+                    },
+                    "confirmNewPassword": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["username", "password", "newPassword", "confirmNewPassword"]
+                }
+              }
+            }
+            },
+          "responses": {
+            "200": {
+              "description": "Alteração na Senha realizado com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "token": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Erro ao realizar alteração na senha"
+            }
+          }
+        }
+      },
     
     "/api/user/user": {
       "get": {
@@ -394,6 +538,7 @@
           }
         }
       }
+
     }   
   }
 }

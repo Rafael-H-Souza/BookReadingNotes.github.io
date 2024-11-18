@@ -1,12 +1,14 @@
 const express = require('express');
 const bookService = require('../services/bookService')
 
+const authenticateToken = require('../middleware/auth')
+
 const router = express.Router();
 
 // {"id": 1, "livro": "1984", "categoria": "Ficção distópica", "autor": "George Orwell"}
-router.post('/register', async (req, res) => {
+router.post('/register', authenticateToken,async (req, res) => {
     try {
-        const { name, category, author } = req.query;
+        const { name, category, author } = req.body;
         if (!name || !category || !author) {
             return res.status(400).json({ error: 'Pelo menos os campos "name", "category" e "author" precisam ser informados.' });
         }        
@@ -18,15 +20,16 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.put('/update/:id', async(req, res)=>{
+router.put('/update/:id', authenticateToken,async(req, res)=>{
     try {
-        const { id } = req.params;
-        const { name, category, author } = req.query;
+        const { id } = req.query;
+        const { name, category, author } = req.body;
         
+        console.log(`test 03`,name, category, author)
         if (!name && !category && !author) {
             return res.status(400).json({ error: 'Pelo menos um campo ("name", "category", "author") precisa ser informado.' })
         }
-        
+        console.log(`test 04`)
         if (!await bookService.getBook(id)) {
             return res.status(404).json({ error: 'Livro não encontrado.' });
         }else{
@@ -39,7 +42,7 @@ router.put('/update/:id', async(req, res)=>{
     }
 })
 
-router.get('/list', async(req, res)=>{
+router.get('/list', authenticateToken, async(req, res)=>{
     try{
         const book = await bookService.getBooks()
         
@@ -50,7 +53,7 @@ router.get('/list', async(req, res)=>{
     }
 })
 
-router.delete('/delete/:id', async(req, res)=>{
+router.delete('/delete/:id', authenticateToken, async(req, res)=>{
     try{
         const id = req.params.id
         if (!bookService.getBook(id)) {
