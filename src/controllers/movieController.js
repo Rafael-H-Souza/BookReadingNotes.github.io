@@ -1,6 +1,7 @@
 const express = require('express');
 
 const movieService = require('../services/movieService')
+const authenticateToken = require('../middleware/auth')
 
 const router = express.Router();
 
@@ -18,7 +19,7 @@ router.post('/register',  async (req, res)=>{
     }
 });
 
-router.delete('/delete/:id', async(req, res)=>{
+router.delete('/delete/:id', authenticateToken, async(req, res)=>{
     try{
         const movieId = req.params.id
         console.log(movieId)
@@ -35,7 +36,7 @@ router.delete('/delete/:id', async(req, res)=>{
     }
 })
 
-router.put('/update/:id', async(req, res)=>{
+router.put('/update/:id', authenticateToken, async(req, res)=>{
     try{
         const movieId = req.params.id
         console.log(movieId)
@@ -51,7 +52,7 @@ router.put('/update/:id', async(req, res)=>{
     }
 })
 
-router.get('/movie', async(req, res)=>{
+router.get('/movie', authenticateToken, async(req, res)=>{
     try{
         const movie = await movieService.getMovies()
         res.json(movie);

@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "User Book Reading Notes",
+    "title": "Mult Serverces ",
     "description": "API para registro, login e listagem de usuários",
     "version": "1.0.0"
   },
@@ -226,41 +226,46 @@
       }
     } , 
     
-    
     "/api/foot/register": {
       "post": {
         "tags": ["Foots"],
-        "summary": "Registrar um novo Livro",
-        "security":[
+        "summary": "Registrar um novo time",
+        "security": [
           {
-            "BearerAuth":[]
+            "BearerAuth": []
           }
         ],
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    },
-                    "category": {
-                      "type": "string"
-                    },
-                    "author":{
-                      "type": "string"
-                    }
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nameTime": {
+                    "type": "string"
                   },
-                  "required": ["name", "category", "author"]
-                }
+                  "category": {
+                    "type": "string"
+                  },
+                  "player": {
+                    "type": "string"
+                  },
+                  "position": {
+                    "type": "string"
+                  },
+                  "numberPlayer": {
+                    "type": "integer"
+                  }
+                },
+                "required": ["nameTime", "category", "player", "position", "numberPlayer"]
               }
             }
-          },
+          }
+        },
         "responses": {
           "200": {
-            "description": "Livro registrado com sucesso",
+            "description": "Time registrado com sucesso",
             "content": {
               "application/json": {
                 "schema": {
@@ -268,16 +273,22 @@
                   "properties": {
                     "id": {
                       "type": "integer",
-                      "description": "ID único do livro"
+                      "description": "ID único do time"
                     },
-                    "name": {
+                    "nameTime": {
                       "type": "string"
                     },
                     "category": {
                       "type": "string"
                     },
-                    "author":{
+                    "player": {
                       "type": "string"
+                    },
+                    "position": {
+                      "type": "string"
+                    },
+                    "numberPlayer": {
+                      "type": "integer"
                     }
                   }
                 }
@@ -285,7 +296,7 @@
             }
           },
           "400": {
-            "description": "Erro ao registrar o Livro"
+            "description": "Erro ao registrar o time"
           }
         }
       }
@@ -294,10 +305,10 @@
     "/api/foot/delete/{id}": {
       "delete": {
         "tags": ["Foots"],
-        "summary": "Deletar livro",
-        "security":[
+        "summary": "Deletar time",
+        "security": [
           {
-            "BearerAuth":[]
+            "BearerAuth": []
           }
         ],
         "parameters": [
@@ -312,23 +323,24 @@
         ],
         "responses": {
           "200": {
-            "description": "Livro deletado com sucesso"
+            "description": "Time deletado com sucesso"
           },
           "400": {
-            "description": "Erro ao deletar o livro"
+            "description": "Erro ao deletar o time"
           }
         }
       }
     },
+
     "/api/foot/update/{id}": {
       "put": {
         "tags": ["Foots"],
-        "summary": "Atualizar dados de um livro",
-        "security":[
+        "summary": "Atualizar dados de um time",
+        "security": [
           {
-            "BearerAuth":[]
+            "BearerAuth": []
           }
-        ], 
+        ],
         "parameters": [
           {
             "name": "id",
@@ -340,30 +352,36 @@
           }
         ],
         "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    },
-                    "category": {
-                      "type": "string"
-                    },
-                    "author":{
-                      "type": "string"
-                    }
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nameTime": {
+                    "type": "string"
                   },
-                  "required": ["name", "category", "author"]
-                }
+                  "category": {
+                    "type": "string"
+                  },
+                  "player": {
+                    "type": "string"
+                  },
+                  "position": {
+                    "type": "string"
+                  },
+                  "numberPlayer": {
+                    "type": "integer"
+                  }
+                },
+                "required": ["nameTime", "category", "player", "position", "numberPlayer"]
               }
             }
-          },
+          }
+        },
         "responses": {
           "200": {
-            "description": "Livro atualizado com sucesso",
+            "description": "Time atualizado com sucesso",
             "content": {
               "application/json": {
                 "schema": {
@@ -372,14 +390,20 @@
                     "id": {
                       "type": "integer"
                     },
-                    "name": {
+                    "nameTime": {
                       "type": "string"
                     },
                     "category": {
                       "type": "string"
                     },
-                    "author": {
+                    "player": {
                       "type": "string"
+                    },
+                    "position": {
+                      "type": "string"
+                    },
+                    "numberPlayer": {
+                      "type": "integer"
                     }
                   }
                 }
@@ -387,24 +411,24 @@
             }
           },
           "400": {
-            "description": "Erro ao atualizar o livro"
+            "description": "Erro ao atualizar o time"
           }
         }
       }
     },
-    
+
     "/api/foot/list": {
       "get": {
         "tags": ["Foots"],
-        "summary": "Obter a lista de Livros",
-        "security":[
+        "summary": "Obter a lista de times",
+        "security": [
           {
-            "BearerAuth":[]
+            "BearerAuth": []
           }
-        ],         
+        ],
         "responses": {
           "200": {
-            "description": "Lista de livros",
+            "description": "Lista de times",
             "content": {
               "application/json": {
                 "schema": {
@@ -416,14 +440,20 @@
                         "type": "string",
                         "format": "uuid"
                       },
-                      "name": {
+                      "nameTime": {
                         "type": "string"
                       },
                       "category": {
                         "type": "string"
                       },
-                      "author":{
+                      "player": {
                         "type": "string"
+                      },
+                      "position": {
+                        "type": "string"
+                      },
+                      "numberPlayer": {
+                        "type": "integer"
                       }
                     }
                   }
@@ -432,11 +462,13 @@
             }
           },
           "400": {
-            "description": "Erro ao obter a lista de livros"
+            "description": "Erro ao obter a lista de times"
           }
         }
       }
-    } ,
+    },
+
+    
 
     
     "/api/movie/register": {
@@ -497,10 +529,16 @@
       }
     },
 
-    "/api/movie/delete/{id}": {
+  "/api/movie/delete/{id}": 
+    {
       "delete": {
         "tags": ["Movies"],
         "summary": "Deletar Filme",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -521,6 +559,81 @@
         }
       }
     },
+    "/api/movie/update/{id}":
+    {
+      "put": {
+        "tags": ["Movies"],
+        "summary": "Atualizar dados de um Filme",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string"
+                  },
+                  "director": {
+                    "type": "string"
+                  }
+                },
+                "required": ["name", "gender", "director"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Filme atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "gender": {
+                      "type": "string"
+                    },
+                    "director": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao atualizar o filme"
+          }
+        }
+      }
+    },
+    
+
 
     "/api/movie/movie": {
       "get": {
@@ -656,64 +769,7 @@
           }
         }
       }
-    },
-    "/api/user/updatePassword": {
-        "put": {
-          "tags": ["Users"],
-          "summary": "Atualizar senhado Usuário",
-          "security":[
-            {
-              "BearerAuth":[]
-            }
-          ],
-          "requestBody": {
-              "required": true,
-              "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "username": {
-                      "type": "string"
-                    },
-                    "password": {
-                      "type": "string"
-                    },
-                    "newPassword": {
-                      "type": "string"
-                    },
-                    "confirmNewPassword": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["username", "password", "newPassword", "confirmNewPassword"]
-                }
-              }
-            }
-            },
-          "responses": {
-            "200": {
-              "description": "Alteração na Senha realizado com sucesso",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "token": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Erro ao realizar alteração na senha"
-            }
-          }
-        }
-      },
-    
+    },    
     "/api/user/user": {
       "get": {
         "tags": ["Users"],
