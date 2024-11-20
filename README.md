@@ -1,11 +1,30 @@
 #Run
-run in terminal npm start
+- run in terminal npm start
 
 ##Config
 
 Important
 
-run in terminal npm install for Node dependency
+ -run in terminal npm install for Node dependency
+
+---
+
+##Run with docker
+
+Create an image in dokcker
+- docker build -t multserverce:1.0.0 .
+
+Create a container associated with the image in dokcker
+- docker run -d -p 3000:3000 --name api_multserverce multserverce:1.0.0
+
+To run API application in the container
+- docker start api_multserverce
+
+To finalize the API application in the container
+- docker stop api_multserverce
+
+---
+
 
 library
 
@@ -41,26 +60,51 @@ library
 
     Config/ database - Config – These are environment configuration or connection of other applications or banks  
 
-
-
     Config/ database - Config – These are environment configuration or connection of other applications or banks
 
+        └── src
+            ├── config          
+            ├── controllers     
+            ├── middleware      
+            ├── models          
+            ├── repositories    
+            ├── services        
+            └── utils           
     
 
 
-    Observações:
+#Observations:
 
-    O modulos foram desenvolvidos em conjuntos o CRUD funcional esta em Books, Movies e User os demais estão com outras funções.
+The modules were developed in sets, the functional CRUD is in Books, Movies and User, the others are in the beta phase of creation.
 
-    foram desenvolvido para estudos
+* Books
+    Get - Select: conclusion
+    Post - Create: conclusion
+    Delete - Delete: conclusion
+    Put - Update: conclusion
+* Movies
+    Get - Select: conclusion
+    Post - Create: conclusion
+    Delete - Delete: conclusion
+    Put - Update: in progress
+* Users
+    Get - Select: conclusion
+    Post - Create: conclusion
+    Delete - Delete: in progress
+    Put - Update: in progress
+* Foots
+    Get - Select: in progress
+    Post - Create: in progress
+    Delete - Delete: in progress
+    Put - Update: in progress
+    
 
-    MEmbros do grupo 
-    :
 
-    Camila Viera RA: 2207423
-    Leaonardo Martelli RA: 2203130
-    Nathan Lopes RA: 2204336
-    Rafael Souza RA: 2202592
+Group members:
 
+* Camila Viera RA: 2207423
+* Leaonardo Martelli RA: 2203130
+* Nathan Lopes RA: 2204336
+* Rafael Souza RA: 2202592
 
 
